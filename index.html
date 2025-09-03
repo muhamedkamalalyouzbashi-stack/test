@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FH Kamal – Innovative Hochschule</title>
+    <!-- Chatbot als iFrame eingebettet -->
+<iframe 
+  src="https://dein-chatbot-server.de/chat" 
+  style="width: 400px; height: 600px; border: none; position: fixed; bottom: 20px; right: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.2); border-radius: 12px;">
+</iframe>
+
+    <style>
+        /* Reset & Grundstil */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f0ff, #ffffff);
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            color: #0077cc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover, a:focus {
+            color: #004080;
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #004080, #0066cc);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hauptbereich */
+        main {
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+        }
+
+        /* Hero Sektion */
+        .hero {
+            background: #0077cc;
+            color: white;
+            padding: 60px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 119, 204, 0.4);
+            margin-bottom: 50px;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
+        }
+        .hero .btn-primary {
+            background-color: #ffcc00;
+            color: #004080;
+            font-weight: 700;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.6);
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .hero .btn-primary:hover {
+            background-color: #e6b800;
+            box-shadow: 0 6px 14px rgba(230, 184, 0, 0.8);
+        }
+
+        /* Vorteile Sektion */
+        section.advantages {
+            background: #f0f8ff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+        section.advantages h3 {
+            color: #004080;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        ul.features {
+            list-style: none;
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        ul.features li {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 50px;
+            color: #004080;
+            font-weight: 600;
+        }
+        ul.features li::before {
+            content: "✔";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #ffcc00;
+            text-shadow: 0 0 3px #b38f00;
+        }
+
+        /* Studienangebot Sektion */
+        section.study-offer {
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        section.study-offer h3 {
+            color: #004080;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+        section.study-offer p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .study-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .study-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 25px 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+        .study-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .study-item h4 {
+            color: #0066cc;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .study-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Kontakt Sektion */
+        section.contact {
+            background: #e6f0ff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+        section.contact h3 {
+            color: #004080;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        section.contact p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        section.contact a.btn-secondary {
+            background-color: #004080;
+            color: white;
+            font-weight: 700;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,64,128,0.6);
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        section.contact a.btn-secondary:hover {
+            background-color: #00264d;
+            box-shadow: 0 6px 16px rgba(0,38,77,0.8);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #00264d;
+            color: #ccc;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .study-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .btn-primary {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FH Kamal</h1>
+        <nav aria-label="Hauptnavigation">
+            <ul>
+                <li><a href="#" tabindex="0">Startseite</a></li>
+                <li><a href="#" tabindex="0">Studium</a></li>
+                <li><a href="#" tabindex="0">Forschung</a></li>
+                <li><a href="#" tabindex="0">Über uns</a></li>
+                <li><a href="#" tabindex="0">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+          <video width="320" height="240" controls>
+  <source src="video1.mp4" type="video/mp4">
+        <section class="hero" role="banner">
+            <h2>Willkommen an der FH Kamal</h2>
+            <p>Innovative Studiengänge, persönliche Betreuung und starker Praxisbezug – das bietet die FH Kamal. Entdecke dein Studium ohne Studiengebühren und mit vielfältigen Möglichkeiten.</p>
+            <a href="#" class="btn-primary" role="button" aria-label="Jetzt bewerben">Jetzt bewerben</a>
+        </section>
+
+        <section class="advantages" aria-labelledby="advantages-title">
+            <h3 id="advantages-title">Unsere Vorteile</h3>
+            <ul class="features">
+                <li>Einzigartige Studienkombinationen ohne Studiengebühren</li>
+                <li>Persönliche Betreuung in kleinen Gruppen</li>
+                <li>Praxisnahe Lehre mit erfahrenen Dozenten</li>
+                <li>Berufsbegleitende Studienmöglichkeiten</li>
+                <li>Moderne Labore und Lernräume</li>
+                <li>Internationale Austauschprogramme</li>
+            </ul>
+        </section>
+
+        <section class="study-offer" aria-labelledby="study-offer-title">
+            <h3 id="study-offer-title">Studienangebot</h3>
+            <p>Wir bieten Bachelor- und Masterstudiengänge in verschiedenen Fachbereichen an, organisiert an zwei Standorten mit flexiblen Studienmodellen.</p>
+            <div class="study-list">
+                <article class="study-item" tabindex="0" aria-label="Bachelor Informatik">
+                    <h4>Bachelor Informatik</h4>
+                    <p>Moderne IT-Technologien, Programmierung und Softwareentwicklung mit Praxisbezug.</p>
+                </article>
+                <article class="study-item" tabindex="0" aria-label="Bachelor Betriebswirtschaft">
+                    <h4>Bachelor Betriebswirtschaft</h4>
+                    <p>Fundiertes Wissen in Management, Marketing und Unternehmensführung.</p>
+                </article>
+                <article class="study-item" tabindex="0" aria-label="Master Data Science">
+                    <h4>Master Data Science</h4>
+                    <p>Analyse großer Datenmengen und Entwicklung intelligenter Algorithmen.</p>
+                </article>
+                <article class="study-item" tabindex="0" aria-label="Master Umwelttechnik">
+                    <h4>Master Umwelttechnik</h4>
+                    <p>Nachhaltige Technologien und Umweltschutz in der Praxis.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact" aria-labelledby="contact-title">
+            <h3 id="contact-title">Kontakt & Bewerbung</h3>
+            <p>Interessiert? Bewirb dich online oder kontaktiere uns für eine persönliche Beratung. Wir freuen uns auf dich!</p>
+            <p><a href="https://hochschule-burgenland.at" target="_blank" rel="noopener noreferrer" class="btn-secondary" role="button" aria-label="Zur Bewerbung und Informationen">Zur Bewerbung &amp; Infos</a></p>
+            <p>Telefon: <a href="tel:+43123456789">+43 1 234 56 789</a> | E-Mail: <a href="mailto:info@fhkamal.at">info@fhkamal.at</a></p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 FH Kamal | <a href="#" tabindex="0">Datenschutz</a> | <a href="#" tabindex="0">Impressum</a>
+    </footer>
+</body>
+</html>
