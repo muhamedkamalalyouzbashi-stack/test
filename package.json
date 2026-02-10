@@ -1,0 +1,13 @@
+{
+  "name": "ai-for-teacher-mvp",
+  "version": "0.1.0",
+  "description": "Local-first teacher productivity MVP with server-side AI routes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --check server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
