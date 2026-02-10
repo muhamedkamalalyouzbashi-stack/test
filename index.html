@@ -1,366 +1,326 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>FH Kamal – Innovative Hochschule</title>
-    <!-- Chatbot als iFrame eingebettet -->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ai for Teacher | MVP</title>
     <style>
-        /* Reset & Grundstil */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e0f0ff, #ffffff);
-            color: #222;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        a {
-            color: #0077cc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover, a:focus {
-            color: #004080;
-            text-decoration: underline;
-        }
+      :root {
+        color-scheme: light;
+        --bg: #f3f6ff;
+        --card: #ffffff;
+        --text: #1f2937;
+        --primary: #3b82f6;
+        --primary-dark: #1d4ed8;
+        --border: #dbe3f0;
+      }
 
-        /* Header */
-        header {
-            background: linear-gradient(90deg, #004080, #0066cc);
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            user-select: none;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        nav ul li a {
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 6px 10px;
-            border-radius: 4px;
-        }
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+        background: radial-gradient(circle at top right, #dbeafe, var(--bg));
+        color: var(--text);
+      }
 
-        /* Hauptbereich */
-        main {
-            flex-grow: 1;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px 60px;
-        }
+      .app {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
 
-        /* Hero Sektion */
-        .hero {
-            background: #0077cc;
-            color: white;
-            padding: 60px 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 119, 204, 0.4);
-            margin-bottom: 50px;
-        }
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-        }
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.5;
-        }
-        .hero .btn-primary {
-            background-color: #ffcc00;
-            color: #004080;
-            font-weight: 700;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.6);
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .hero .btn-primary:hover {
-            background-color: #e6b800;
-            box-shadow: 0 6px 14px rgba(230, 184, 0, 0.8);
-        }
+      header {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 18px;
+      }
 
-        /* Vorteile Sektion */
-        section.advantages {
-            background: #f0f8ff;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-        }
-        section.advantages h3 {
-            color: #004080;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 700;
-        }
-        ul.features {
-            list-style: none;
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        ul.features li {
-            background: white;
-            padding: 20px 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            font-size: 1.1rem;
-            position: relative;
-            padding-left: 50px;
-            color: #004080;
-            font-weight: 600;
-        }
-        ul.features li::before {
-            content: "✔";
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: #ffcc00;
-            text-shadow: 0 0 3px #b38f00;
-        }
+      h1 { margin: 0; font-size: 1.7rem; }
+      .subtitle { margin: 5px 0 0; opacity: 0.8; }
 
-        /* Studienangebot Sektion */
-        section.study-offer {
-            margin-bottom: 50px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        section.study-offer h3 {
-            color: #004080;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-align: center;
-        }
-        section.study-offer p {
-            font-size: 1.15rem;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #333;
-        }
-        .study-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .study-item {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            padding: 25px 30px;
-            width: 280px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            cursor: default;
-        }
-        .study-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .study-item h4 {
-            color: #0066cc;
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        .study-item p {
-            font-size: 1rem;
-            color: #555;
-        }
+      .lang-switch {
+        display: flex;
+        gap: 8px;
+      }
 
-        /* Kontakt Sektion */
-        section.contact {
-            background: #e6f0ff;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            max-width: 900px;
-            margin: 0 auto 60px;
-            text-align: center;
-        }
-        section.contact h3 {
-            color: #004080;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-        section.contact p {
-            font-size: 1.15rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        section.contact a.btn-secondary {
-            background-color: #004080;
-            color: white;
-            font-weight: 700;
-            padding: 14px 36px;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0,64,128,0.6);
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
-        section.contact a.btn-secondary:hover {
-            background-color: #00264d;
-            box-shadow: 0 6px 16px rgba(0,38,77,0.8);
-        }
+      .lang-switch button,
+      .btn {
+        border: 1px solid var(--border);
+        background: white;
+        padding: 8px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
 
-        /* Footer */
-        footer {
-            background-color: #00264d;
-            color: #ccc;
-            text-align: center;
-            padding: 20px 10px;
-            font-size: 0.9rem;
-            user-select: none;
-        }
-        footer a {
-            color: #ffcc00;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
+      .lang-switch button.active,
+      .btn.primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .study-list {
-                flex-direction: column;
-                align-items: center;
-            }
-            nav ul {
-                gap: 15px;
-            }
-            header {
-                justify-content: center;
-                text-align: center;
-            }
-        }
-        @media (max-width: 480px) {
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .hero .btn-primary {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-        }
+      .grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      input, textarea, select {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 12px;
+        font: inherit;
+      }
+
+      textarea { min-height: 120px; resize: vertical; }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+      .history-item {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #f8fbff;
+      }
+
+      .muted { opacity: 0.75; font-size: 0.9rem; }
+      #status { min-height: 20px; margin-top: 10px; }
+      #aiOutput { white-space: pre-wrap; }
+
+      @media (max-width: 900px) {
+        .grid { grid-template-columns: 1fr; }
+        .row { grid-template-columns: 1fr; }
+      }
     </style>
-</head>
-<body>
-    <header>
-        <h1>FH Kamal</h1>
-        <nav aria-label="Hauptnavigation">
-            <ul>
-                <li><a href="#" tabindex="0">Startseite</a></li>
-                <li><a href="#" tabindex="0">Studium</a></li>
-                <li><a href="#" tabindex="0">Forschung</a></li>
-                <li><a href="#" tabindex="0">Über uns</a></li>
-                <li><a href="#" tabindex="0">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-          <video width="320" height="240" controls>
-  <source src="video1.mp4" type="video/mp4">
-        <section class="hero" role="banner">
-            <h2>Willkommen an der FH Kamal</h2>
-            <p>Innovative Studiengänge, persönliche Betreuung und starker Praxisbezug – das bietet die FH Kamal. Entdecke dein Studium ohne Studiengebühren und mit vielfältigen Möglichkeiten.</p>
-            <a href="#" class="btn-primary" role="button" aria-label="Jetzt bewerben">Jetzt bewerben</a>
-        </section>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div>
+          <h1 id="title">ai for Teacher</h1>
+          <p class="subtitle" id="subtitle"></p>
+        </div>
+        <div class="lang-switch">
+          <button data-lang="de" class="active">Deutsch</button>
+          <button data-lang="en">English</button>
+        </div>
+      </header>
 
-        <section class="advantages" aria-labelledby="advantages-title">
-            <h3 id="advantages-title">Unsere Vorteile</h3>
-            <ul class="features">
-                <li>Einzigartige Studienkombinationen ohne Studiengebühren</li>
-                <li>Persönliche Betreuung in kleinen Gruppen</li>
-                <li>Praxisnahe Lehre mit erfahrenen Dozenten</li>
-                <li>Berufsbegleitende Studienmöglichkeiten</li>
-                <li>Moderne Labore und Lernräume</li>
-                <li>Internationale Austauschprogramme</li>
-            </ul>
-        </section>
+      <div class="grid">
+        <section class="card">
+          <h2 id="plannerHeading"></h2>
+          <p class="muted" id="plannerHint"></p>
 
-        <section class="study-offer" aria-labelledby="study-offer-title">
-            <h3 id="study-offer-title">Studienangebot</h3>
-            <p>Wir bieten Bachelor- und Masterstudiengänge in verschiedenen Fachbereichen an, organisiert an zwei Standorten mit flexiblen Studienmodellen.</p>
-            <div class="study-list">
-                <article class="study-item" tabindex="0" aria-label="Bachelor Informatik">
-                    <h4>Bachelor Informatik</h4>
-                    <p>Moderne IT-Technologien, Programmierung und Softwareentwicklung mit Praxisbezug.</p>
-                </article>
-                <article class="study-item" tabindex="0" aria-label="Bachelor Betriebswirtschaft">
-                    <h4>Bachelor Betriebswirtschaft</h4>
-                    <p>Fundiertes Wissen in Management, Marketing und Unternehmensführung.</p>
-                </article>
-                <article class="study-item" tabindex="0" aria-label="Master Data Science">
-                    <h4>Master Data Science</h4>
-                    <p>Analyse großer Datenmengen und Entwicklung intelligenter Algorithmen.</p>
-                </article>
-                <article class="study-item" tabindex="0" aria-label="Master Umwelttechnik">
-                    <h4>Master Umwelttechnik</h4>
-                    <p>Nachhaltige Technologien und Umweltschutz in der Praxis.</p>
-                </article>
+          <div class="row">
+            <div>
+              <label for="grade" id="labelGrade"></label>
+              <input id="grade" placeholder="7" />
             </div>
+            <div>
+              <label for="subject" id="labelSubject"></label>
+              <input id="subject" placeholder="Mathematik" />
+            </div>
+          </div>
+
+          <label for="goal" id="labelGoal"></label>
+          <textarea id="goal"></textarea>
+
+          <label for="lang" id="labelOutputLang"></label>
+          <select id="lang">
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+          </select>
+
+          <div class="actions">
+            <button class="btn" id="saveDraft"></button>
+            <button class="btn primary" id="generateBtn"></button>
+            <button class="btn" id="clearData"></button>
+          </div>
+          <p id="status" class="muted"></p>
         </section>
 
-        <section class="contact" aria-labelledby="contact-title">
-            <h3 id="contact-title">Kontakt & Bewerbung</h3>
-            <p>Interessiert? Bewirb dich online oder kontaktiere uns für eine persönliche Beratung. Wir freuen uns auf dich!</p>
-            <p><a href="https://hochschule-burgenland.at" target="_blank" rel="noopener noreferrer" class="btn-secondary" role="button" aria-label="Zur Bewerbung und Informationen">Zur Bewerbung &amp; Infos</a></p>
-            <p>Telefon: <a href="tel:+43123456789">+43 1 234 56 789</a> | E-Mail: <a href="mailto:info@fhkamal.at">info@fhkamal.at</a></p>
-        </section>
-    </main>
-    <footer>
-        &copy; 2024 FH Kamal | <a href="#" tabindex="0">Datenschutz</a> | <a href="#" tabindex="0">Impressum</a>
-    </footer>
-</body>
+        <aside class="card">
+          <h3 id="historyHeading"></h3>
+          <p class="muted" id="localFirstHint"></p>
+          <div id="history"></div>
+        </aside>
+      </div>
+
+      <section class="card" style="margin-top: 16px;">
+        <h3 id="resultHeading"></h3>
+        <p class="muted" id="apiHint"></p>
+        <div id="aiOutput"></div>
+      </section>
+    </div>
+
+    <script>
+      const copy = {
+        de: {
+          subtitle: 'Teacher-first AI Teaching Productivity Platform (MVP, local-first)',
+          plannerHeading: 'Unterrichtsplan-Assistent',
+          plannerHint: 'Entwürfe werden lokal im Browser gespeichert.',
+          labelGrade: 'Klassenstufe',
+          labelSubject: 'Fach',
+          labelGoal: 'Lernziel / Kontext',
+          labelOutputLang: 'Ausgabesprache',
+          saveDraft: 'Entwurf lokal speichern',
+          generateBtn: 'Mit KI generieren',
+          clearData: 'Lokale Daten löschen',
+          historyHeading: 'Zuletzt gespeicherte Entwürfe',
+          localFirstHint: 'Standardmäßig verlässt kein Entwurf den Browser.',
+          resultHeading: 'KI-Ergebnis',
+          apiHint: 'Die KI-Anfrage läuft über /api/ai/generate, damit keine API-Keys im Frontend landen.',
+          saved: 'Entwurf lokal gespeichert.',
+          deleted: 'Lokale Daten gelöscht.',
+          generating: 'Generiere Vorschlag…',
+          failed: 'Fehler bei der KI-Anfrage.'
+        },
+        en: {
+          subtitle: 'Teacher-first AI Teaching Productivity Platform (MVP, local-first)',
+          plannerHeading: 'Lesson plan assistant',
+          plannerHint: 'Drafts are stored locally in your browser.',
+          labelGrade: 'Grade level',
+          labelSubject: 'Subject',
+          labelGoal: 'Learning objective / context',
+          labelOutputLang: 'Output language',
+          saveDraft: 'Save draft locally',
+          generateBtn: 'Generate with AI',
+          clearData: 'Delete local data',
+          historyHeading: 'Recently saved drafts',
+          localFirstHint: 'By default no draft leaves the browser.',
+          resultHeading: 'AI output',
+          apiHint: 'AI calls are proxied through /api/ai/generate so no API keys are exposed in frontend code.',
+          saved: 'Draft saved locally.',
+          deleted: 'Local data deleted.',
+          generating: 'Generating response…',
+          failed: 'AI request failed.'
+        }
+      };
+
+      const elements = {
+        status: document.getElementById('status'),
+        history: document.getElementById('history'),
+        aiOutput: document.getElementById('aiOutput'),
+        grade: document.getElementById('grade'),
+        subject: document.getElementById('subject'),
+        goal: document.getElementById('goal'),
+        lang: document.getElementById('lang')
+      };
+
+      let uiLang = localStorage.getItem('uiLang') || 'de';
+      const storageKey = 'teacherDrafts:v1';
+
+      function applyCopy() {
+        const t = copy[uiLang];
+        for (const id of ['subtitle','plannerHeading','plannerHint','labelGrade','labelSubject','labelGoal','labelOutputLang','saveDraft','generateBtn','clearData','historyHeading','localFirstHint','resultHeading','apiHint']) {
+          document.getElementById(id).textContent = t[id];
+        }
+        document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === uiLang));
+      }
+
+      function readDrafts() {
+        try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); }
+        catch { return []; }
+      }
+
+      function saveDrafts(drafts) {
+        localStorage.setItem(storageKey, JSON.stringify(drafts.slice(0, 8)));
+      }
+
+      function renderHistory() {
+        const drafts = readDrafts();
+        elements.history.innerHTML = drafts.length ? '' : `<p class="muted">—</p>`;
+        drafts.forEach(d => {
+          const node = document.createElement('div');
+          node.className = 'history-item';
+          node.innerHTML = `<strong>${d.subject || '—'} (${d.grade || '—'})</strong><div class="muted">${new Date(d.savedAt).toLocaleString()}</div><div>${d.goal}</div>`;
+          elements.history.appendChild(node);
+        });
+      }
+
+      function persistCurrentDraft() {
+        const draft = {
+          grade: elements.grade.value.trim(),
+          subject: elements.subject.value.trim(),
+          goal: elements.goal.value.trim(),
+          outputLanguage: elements.lang.value,
+          savedAt: Date.now()
+        };
+        const drafts = readDrafts();
+        drafts.unshift(draft);
+        saveDrafts(drafts);
+        renderHistory();
+        elements.status.textContent = copy[uiLang].saved;
+      }
+
+      async function generateAI() {
+        elements.status.textContent = copy[uiLang].generating;
+        elements.aiOutput.textContent = '';
+        const payload = {
+          grade: elements.grade.value.trim(),
+          subject: elements.subject.value.trim(),
+          goal: elements.goal.value.trim(),
+          language: elements.lang.value
+        };
+
+        try {
+          const res = await fetch('/api/ai/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('Bad response');
+          const data = await res.json();
+          elements.aiOutput.textContent = data.output;
+          elements.status.textContent = '';
+        } catch (err) {
+          elements.status.textContent = copy[uiLang].failed;
+        }
+      }
+
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          uiLang = btn.dataset.lang;
+          localStorage.setItem('uiLang', uiLang);
+          applyCopy();
+        });
+      });
+
+      document.getElementById('saveDraft').addEventListener('click', persistCurrentDraft);
+      document.getElementById('generateBtn').addEventListener('click', generateAI);
+      document.getElementById('clearData').addEventListener('click', () => {
+        localStorage.removeItem(storageKey);
+        elements.aiOutput.textContent = '';
+        renderHistory();
+        elements.status.textContent = copy[uiLang].deleted;
+      });
+
+      applyCopy();
+      renderHistory();
+    </script>
+  </body>
 </html>
