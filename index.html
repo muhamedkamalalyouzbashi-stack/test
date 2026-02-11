@@ -175,6 +175,16 @@
         <p class="muted" id="apiHint"></p>
         <div id="aiOutput"></div>
       </section>
+
+      <section class="card" style="margin-top: 16px;">
+        <h3 id="resourcesHeading"></h3>
+        <p class="muted" id="resourcesHint"></p>
+        <ul>
+          <li>
+            <a href="/content/genial-mathematik1-spieleideen.md" target="_blank" rel="noopener" id="resourceGames"></a>
+          </li>
+        </ul>
+      </section>
     </div>
 
     <script>
@@ -194,6 +204,9 @@
           localFirstHint: 'Standardmäßig verlässt kein Entwurf den Browser.',
           resultHeading: 'KI-Ergebnis',
           apiHint: 'Die KI-Anfrage läuft über /api/ai/generate, damit keine API-Keys im Frontend landen.',
+          resourcesHeading: 'Unterrichtsmaterial',
+          resourcesHint: 'Zusätzliche lokale Materialien für die Unterrichtsplanung.',
+          resourceGames: 'Spielesammlung: Genial! Mathematik 1 (kapitelbasiert)',
           saved: 'Entwurf lokal gespeichert.',
           deleted: 'Lokale Daten gelöscht.',
           generating: 'Generiere Vorschlag…',
@@ -214,6 +227,9 @@
           localFirstHint: 'By default no draft leaves the browser.',
           resultHeading: 'AI output',
           apiHint: 'AI calls are proxied through /api/ai/generate so no API keys are exposed in frontend code.',
+          resourcesHeading: 'Teaching resources',
+          resourcesHint: 'Additional local materials to support lesson planning.',
+          resourceGames: 'Game collection: Genial! Mathematik 1 (chapter-based)',
           saved: 'Draft saved locally.',
           deleted: 'Local data deleted.',
           generating: 'Generating response…',
@@ -236,7 +252,7 @@
 
       function applyCopy() {
         const t = copy[uiLang];
-        for (const id of ['subtitle','plannerHeading','plannerHint','labelGrade','labelSubject','labelGoal','labelOutputLang','saveDraft','generateBtn','clearData','historyHeading','localFirstHint','resultHeading','apiHint']) {
+        for (const id of ['subtitle','plannerHeading','plannerHint','labelGrade','labelSubject','labelGoal','labelOutputLang','saveDraft','generateBtn','clearData','historyHeading','localFirstHint','resultHeading','apiHint','resourcesHeading','resourcesHint','resourceGames']) {
           document.getElementById(id).textContent = t[id];
         }
         document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === uiLang));
