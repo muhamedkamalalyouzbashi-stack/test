@@ -26,3 +26,7 @@ Dann öffnen: `http://localhost:3000`
 - `PORT` – optional, default `3000`.
 
 Ohne `OPENAI_API_KEY` liefert das Backend einen sinnvollen lokalen Demo-Output.
+
+## Beispielmaterial
+
+- Spielesammlung für *Genial! Mathematik 1*: `content/genial-mathematik1-spieleideen.md`
